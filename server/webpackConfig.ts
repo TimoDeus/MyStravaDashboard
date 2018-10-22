@@ -135,5 +135,5 @@ export const webpackConfig: Configuration = {
     fs: 'empty',
     net: 'empty'
   },
-  mode: 'development'
+  mode: isProduction ? 'development' : 'production'
 };
