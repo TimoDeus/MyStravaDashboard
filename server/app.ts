@@ -1,11 +1,14 @@
 import * as express from "express";
 import * as bodyParser from "body-parser";
-import { Routes } from "./routes";
+import { ApiRoutes } from "./routes/apiRoutes";
+import * as path from "path";
+
+const DIST_DIR = path.join(__dirname, '..', '..', 'dist');
 
 class App {
 
   public app: express.Application;
-  public routes: Routes = new Routes();
+  public routes: ApiRoutes = new ApiRoutes();
 
   constructor() {
     this.app = express();
@@ -16,6 +19,10 @@ class App {
     this.app.use(bodyParser.json());
     this.app.use(bodyParser.urlencoded({ extended: false }));
     this.routes.addRoutes(this.app);
+
+    const router = express.Router();
+    router.use(express.static(DIST_DIR));
+    this.app.use(router);
   }
 }
 

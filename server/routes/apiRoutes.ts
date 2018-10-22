@@ -1,6 +1,6 @@
 import {Application, Request, Response} from "express";
 
-export class Routes {
+export class ApiRoutes {
   public addRoutes(app: Application): void {
     app.route('/api')
       .get((req: Request, res: Response) => {
