@@ -24,6 +24,7 @@
     "@types/react-router-redux": "5.0.16",
     "@types/redux-actions": "2.3.1",
     "@types/webpack": "4.4.16",
+    "@types/webpack-dev-middleware": "^2.0.2",
     "@types/webpack-env": "1.13.6",
     "babel-loader": "^8.0.4",
     "css-loader": "^1.0.0",
@@ -49,6 +50,7 @@
     "webpack": "^4.20.2",
     "webpack-cleanup-plugin": "^0.5.1",
     "webpack-cli": "^3.1.2",
+    "webpack-dev-middleware": "^3.4.0",
     "webpack-dev-server": "^3.1.9"
   },
   "dependencies": {
