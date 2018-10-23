@@ -9,3 +9,5 @@ export function omit<T extends object, K extends keyof T>(target: T, ...omitKeys
     {} as any
   );
 }
+
+export const isProduction = () => process.argv.indexOf('-p') >= 0 || process.env.NODE_ENV === 'production';
