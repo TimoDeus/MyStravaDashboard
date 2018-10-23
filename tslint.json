@@ -1,10 +1,10 @@
 {
   "defaultSeverity": "error",
   "extends": [
+    "tslint-react",
     "tslint-eslint-rules"
   ],
   "jsRules": {},
   "rulesDirectory": [],
-  "rules": {
-  }
+  "rules": {}
 }
