@@ -1,14 +1,16 @@
 import * as express from "express";
 import * as bodyParser from "body-parser";
 import apiRouter from "./router/apiRouter";
-import frontendRouter from "./router/frontendRouter";
+import FrontendRouter from "./router/frontendRouter";
 
 class App {
 
   public app: express.Application;
+  frontendRouter: FrontendRouter;
 
   constructor() {
     this.app = express();
+    this.frontendRouter = new FrontendRouter();
     this.configure();
   }
 
@@ -16,7 +18,7 @@ class App {
     this.app.use(bodyParser.json());
     this.app.use(bodyParser.urlencoded({extended: false}));
     this.app.use("/api", apiRouter);
-    this.app.use(frontendRouter);
+    this.frontendRouter.addRoute(this.app);
   }
 }
 
