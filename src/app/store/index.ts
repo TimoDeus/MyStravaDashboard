@@ -5,9 +5,10 @@ import {History} from 'history';
 import logger from 'redux-logger';
 import {rootReducer, RootState} from 'app/reducers';
 import {isProduction} from "app/utils";
+import thunk from 'redux-thunk';
 
 export function configureStore(history: History, initialState?: RootState): Store<RootState> {
-  const middlewares = [routerMiddleware(history)];
+  const middlewares = [thunk, routerMiddleware(history)];
   if (!isProduction()) {
     middlewares.push(logger);
   }

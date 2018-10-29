@@ -1,9 +1,18 @@
 import * as React from 'react';
+import {connect} from "react-redux";
+import {RootState} from "app/reducers";
+import Login from "../Login";
 
-const App = () => {
-  return (
-    <div>My fancy app.</div>
-  );
+interface Props {
+  token?: string;
+}
+
+const App = (props: Props) => {
+  return props.token ? <div>My fancy app.</div> : <Login/>;
 };
 
-export default App;
+const  mapStateToProps = ({ authorization }: RootState) => ({
+  token: authorization.accessToken,
+});
+
+export default connect(mapStateToProps)(App);
