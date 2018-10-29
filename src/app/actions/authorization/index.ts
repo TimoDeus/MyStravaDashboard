@@ -1,12 +1,9 @@
 import * as constants from './types';
-import {AuthorizeAction} from './types';
-import {ActionCreator} from "redux";
-import {AsyncAction, DispatchThunk} from "app/actions/types";
+import {ActionCreator, Dispatch} from "redux";
+import {VoidThunkAction} from "app/actions/types";
+import {AuthorizeAction} from "./types";
 
-export const authorize: ActionCreator<AsyncAction<AuthorizeAction>> = () => (dispatch: DispatchThunk<AuthorizeAction>) => {
-  dispatch({type: constants.AUTHORIZE_REQUEST});
-  return Promise.resolve().then(
-    () => dispatch({type: constants.AUTHORIZE_SUCCESS, payload: {token: 'foo'}}),
-    () => dispatch({type: constants.AUTHORIZE_FAILURE})
-  );
+export const storeToken: ActionCreator<VoidThunkAction<AuthorizeAction>> = (code: string) => (dispatch: Dispatch) => {
+  // TODO use the code to get the real accessToken
+  dispatch({type: constants.AUTHORIZE_SUCCESS, payload: {token: code}});
 };

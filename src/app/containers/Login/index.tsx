@@ -1,21 +1,11 @@
 import * as React from 'react';
-import {authorize} from "app/actions/authorization";
-import {connect} from "react-redux";
-import {DispatchThunk} from "app/actions/types";
-import {AuthorizeAction} from "app/actions/authorization/types";
 
-interface Props {
-  doLogin: () => void;
-}
-
-const Login = (props: Props) => (
+const Login = () => (
   <div>
-    <button onClick={props.doLogin}>Login please</button>
+    <a href="https://www.strava.com/oauth/authorize?client_id=29594&response_type=code&redirect_uri=http://localhost:3000/oauth-callback">
+      Login please
+    </a>
   </div>
 );
 
-const mapDispatchToProps = (dispatch: DispatchThunk<AuthorizeAction>) => ({
-  doLogin: () => dispatch(authorize()),
-});
-
-export default connect(null, mapDispatchToProps)(Login);
+export default Login;
