@@ -1,14 +1,9 @@
 import * as constants from './types';
 import {AuthorizeAction} from './types';
-import {ActionCreator, Dispatch} from "redux";
-import {ThunkAction, ThunkDispatch} from "redux-thunk";
-import {RootState} from "app/reducers";
+import {ActionCreator} from "redux";
+import {AsyncAction, DispatchThunk} from "app/actions/types";
 
-export type RTAction = ThunkAction<Promise<any>, RootState, null, AuthorizeAction>;
-export type RTDispatch = ThunkDispatch<RootState, null, AuthorizeAction>;
-export type GetState = () => RootState;
-
-export const authorize: ActionCreator<RTAction> = () => (dispatch: Dispatch) => {
+export const authorize: ActionCreator<AsyncAction<AuthorizeAction>> = () => (dispatch: DispatchThunk<AuthorizeAction>) => {
   dispatch({type: constants.AUTHORIZE_REQUEST});
   return Promise.resolve().then(
     () => dispatch({type: constants.AUTHORIZE_SUCCESS, payload: {token: 'foo'}}),
