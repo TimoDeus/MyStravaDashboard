@@ -5,16 +5,10 @@ import {StravaAuthRequestParams, StravaAuthResponse} from "../../types/authentic
 const BASE_URL = "https://www.strava.com/oauth/";
 
 type AuthenticationFacadeType = {
-  handleGetAuthUrl: (req: Request, res: Response) => void;
   handleAuthenticate: (req: Request, res: Response) => void;
 };
 
 class AuthenticationFacade implements AuthenticationFacadeType {
-
-  public handleGetAuthUrl = (req: Request, res: Response) => {
-    const url = BASE_URL + 'authorize?response_type=code&redirect_uri=http://localhost:3000/oauth-callback&client_id=' + process.env.CLIENT_ID;
-    res.json({url});
-  };
 
   public handleAuthenticate = (req: Request, res: Response) => {
     const code = req.body.code;
