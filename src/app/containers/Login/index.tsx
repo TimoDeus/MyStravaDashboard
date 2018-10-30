@@ -1,13 +1,11 @@
 import * as React from 'react';
-import stravaConfig from '../../../utils/strava.config';
-
 
 const Login = () => (
   <div>
-    <a href={stravaConfig.getAuthUrl()}>
+    <a href="https://www.strava.com/oauth/authorize?response_type=code&redirect_uri=http://localhost:3000/oauth-callback&client_id=29594">
       Login please
     </a>
-    {process.env.CLIENT_ID ||1234}
+    {process.env.CLIENT_ID}
   </div>
 );
 

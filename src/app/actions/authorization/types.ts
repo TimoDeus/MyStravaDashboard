@@ -1,8 +1,8 @@
-import {AthleteType} from "../../../../types/athlete";
+import {AthleteState} from "../../../../types/athlete";
 
-interface AuthorizationPayload {
+export type AuthorizationPayload = {
   token: string;
-  athlete: AthleteType
+  athlete: AthleteState
 }
 
 interface AuthorizeRequest {

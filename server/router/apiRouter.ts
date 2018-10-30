@@ -1,5 +1,5 @@
 import {Router} from "express";
-import {getRoutes, postRoutes} from "../routes/api";
+import {AuthenticationController} from "../controllers";
 
 class ApiRouter {
 
@@ -7,12 +7,11 @@ class ApiRouter {
 
   constructor() {
     this.router = Router();
-    this.addRoutes();
+    this.addControllers();
   }
 
-  addRoutes = () => {
-    getRoutes.map(route => this.router.get(route.path, route.handler));
-    postRoutes.map(route => this.router.post(route.path, route.handler));
+  addControllers = () => {
+    this.router.use('/authentication', AuthenticationController);
   }
 }
 

@@ -1,4 +1,4 @@
-export type AthleteState = {
+export type StravaAthleteType = {
   id?: number;
   badge_type_id?: number;
   resource_state?: number;
