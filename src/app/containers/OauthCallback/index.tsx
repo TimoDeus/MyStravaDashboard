@@ -2,7 +2,7 @@ import * as React from 'react';
 import {Component} from 'react';
 import {DispatchThunk} from "app/actions/types";
 import {AuthorizeAction} from "app/actions/authorization/types";
-import {storeToken} from "app/actions/authorization";
+import {authorize} from "app/actions/authorization";
 import {connect} from "react-redux";
 import {RouteComponentProps, withRouter} from "react-router";
 import {History} from "history";
@@ -31,7 +31,7 @@ class OauthCallback extends Component<ComponentProps> {
 
 const mapDispatchToProps = (dispatch: DispatchThunk<AuthorizeAction>, ownProps: Props) => ({
   doStoreToken: (token: string) => {
-    dispatch(storeToken(token));
+    dispatch(authorize(token));
     ownProps.history.push('/');
   }
 });

@@ -1,6 +1,7 @@
 import * as path from "path";
 import * as webpack from "webpack";
 import {Configuration} from "webpack";
+import * as Dotenv from 'dotenv-webpack';
 
 // variables
 const isProduction = process.argv.indexOf('-p') >= 0 || process.env.NODE_ENV === 'production';
@@ -104,6 +105,7 @@ export const webpackConfig: Configuration = {
     runtimeChunk: true
   },
   plugins: [
+    new Dotenv(),
     new webpack.EnvironmentPlugin({
       NODE_ENV: 'development', // use 'development' unless process.env.NODE_ENV is defined
       DEBUG: false
