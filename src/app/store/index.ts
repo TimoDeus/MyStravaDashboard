@@ -6,9 +6,18 @@ import logger from 'redux-logger';
 import {rootReducer, RootState} from 'app/reducers';
 import {isProduction} from "app/utils";
 import thunk from 'redux-thunk';
+// @ts-ignore
+import reduxCookiesMiddleware, {getStateFromCookies} from 'redux-cookies-middleware';
 
-export function configureStore(history: History, initialState?: RootState): Store<RootState> {
-  const middlewares = [thunk, routerMiddleware(history)];
+export function configureStore(history: History): Store<RootState> {
+
+  const cookiePaths = {
+    'authorization.accessToken': {name: 'access_token'}
+  };
+  const stateSkeleton = {authorization: {}};
+  const initialState = getStateFromCookies(stateSkeleton, cookiePaths);
+
+  const middlewares = [thunk, routerMiddleware(history), reduxCookiesMiddleware(cookiePaths)];
   if (!isProduction()) {
     middlewares.push(logger);
   }
