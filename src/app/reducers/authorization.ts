@@ -7,7 +7,7 @@ export interface AuthorizationState {
 export const authorization = (state: AuthorizationState = {}, action: AuthorizeAction) => {
   switch (action.type) {
     case AUTHORIZE_SUCCESS:
-      return {...state, accessToken: action.payload.token};
+      return {...state, accessToken: action.payload.access_token};
     case AUTHORIZE_FAILURE:
       return {...state, authorization: {}};
   }

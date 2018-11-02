@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start-backend": "node ./build/server/server.js",
+    "start-backend": "node %NODE_DEBUG_OPTION% ./build/server/server.js",
     "start-frontend": "webpack-dev-server --mode development --hot --progress --color --port 3000",
     "start": "npm-run-all --parallel start-backend start-frontend",
     "build": "webpack -p --progress --colors",
@@ -80,6 +80,7 @@
     "redux-actions": "^2.6.1",
     "redux-cookies-middleware": "^0.1.3",
     "redux-logger": "^3.0.6",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "strava": "0.0.2"
   }
 }

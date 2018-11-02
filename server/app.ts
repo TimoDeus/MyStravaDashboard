@@ -1,7 +1,7 @@
+require('dotenv').config({path: 'server/.env'});
 import * as express from "express";
 import * as bodyParser from "body-parser";
 import apiRouter from "./router/apiRouter";
-import * as dotenv from 'dotenv';
 import * as cors from "cors";
 
 class App {
@@ -9,7 +9,6 @@ class App {
   public app: express.Application;
 
   constructor() {
-    dotenv.config({path: 'server/.env'});
     this.app = express();
     this.configure();
   }

@@ -1,5 +1,5 @@
 import {Router} from "express";
-import {AuthenticationController} from "../controllers";
+import {AthleteController, AuthenticationController} from "../controllers";
 
 class ApiRouter {
 
@@ -12,6 +12,7 @@ class ApiRouter {
 
   addControllers = () => {
     this.router.use('/authentication', AuthenticationController);
+    this.router.use('/athlete', AthleteController);
   }
 }
 

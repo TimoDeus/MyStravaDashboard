@@ -9,5 +9,6 @@ export type StravaAuthRequestParams = {
 export type StravaAuthResponse = {
   access_token: string;
   token_type: string;
+  statusCode: number;
   athlete: StravaAthleteType
 }

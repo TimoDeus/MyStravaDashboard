@@ -1,7 +1,7 @@
 import {AthleteState} from "../../../../types/athlete";
 
 export type AuthorizationPayload = {
-  token: string;
+  access_token: string;
   athlete: AthleteState
 }
 

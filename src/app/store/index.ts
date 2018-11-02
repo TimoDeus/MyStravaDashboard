@@ -14,7 +14,7 @@ export function configureStore(history: History): Store<RootState> {
   const cookiePaths = {
     'authorization.accessToken': {name: 'access_token'}
   };
-  const stateSkeleton = {authorization: {}};
+  const stateSkeleton = {authorization: {accessToken: undefined}};
   const initialState = getStateFromCookies(stateSkeleton, cookiePaths);
 
   const middlewares = [thunk, routerMiddleware(history), reduxCookiesMiddleware(cookiePaths)];
