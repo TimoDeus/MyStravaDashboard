@@ -1,21 +1,15 @@
 import {Request, Response} from 'express';
-import axios from "axios";
-import {StravaAuthResponse} from "../../types/authentication/authentication";
+import stravaClient from "../../controllers/stravaApi";
+import executeRequest from "../requestHelper";
 
-const BASE_URL = "https://www.strava.com/api/v3/";
-
-type AuthenticationFacadeType = {
+type AthleteFacadeType = {
   handleGetAthlete: (req: Request, res: Response) => void;
 };
 
-class AthleteFacade implements AuthenticationFacadeType {
+class AthleteFacade implements AthleteFacadeType {
 
-  public handleGetAthlete = (req: Request, res: Response) => {
-    const url = BASE_URL + 'athlete';
-    const options = {};
-    axios.post<StravaAuthResponse>(url, options).then(
-      ({data}) => res.json({token: data.access_token, athlete: data.athlete})
-    );
+  public handleGetAthlete = (req: Request, res: Response): void => {
+    executeRequest(res, stravaClient.athlete.get);
   };
 }
 

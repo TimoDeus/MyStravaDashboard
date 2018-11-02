@@ -1,6 +1,6 @@
 import {Request, Response} from 'express';
 import stravaClient from "../../controllers/stravaApi";
-import responseHandler from "../responseHandler";
+import executeRequest from "../requestHelper";
 
 type AuthenticationFacadeType = {
   handleAuthenticate: (req: Request, res: Response) => void;
@@ -8,9 +8,9 @@ type AuthenticationFacadeType = {
 
 class AuthenticationFacade implements AuthenticationFacadeType {
 
-  public handleAuthenticate = (req: Request, res: Response) => {
+  public handleAuthenticate = (req: Request, res: Response): void => {
     const code = req.body.code;
-    stravaClient.authenticate({code}, responseHandler(res));
+    executeRequest(res, stravaClient.authenticate, [{code}]);
   };
 }
 

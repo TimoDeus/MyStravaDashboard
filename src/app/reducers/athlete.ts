@@ -1,12 +1,12 @@
-import {AUTHORIZE_FAILURE, AUTHORIZE_SUCCESS, AuthorizeAction} from "app/actions/authorization/types";
 import {AthleteState} from "../../../types/athlete";
+import {ATHLETE_FAILURE, ATHLETE_SUCCESS, AthleteAction} from "app/actions/athlete/types";
 
-export const athlete = (state: AthleteState = {}, action: AuthorizeAction) => {
+export const athlete = (state: AthleteState = {}, action: AthleteAction) => {
   switch (action.type) {
-    case AUTHORIZE_SUCCESS:
-      return {...state, athlete: action.payload.athlete};
-    case AUTHORIZE_FAILURE:
-      return {...state, athlete: {}};
+    case ATHLETE_SUCCESS:
+      return {...state, ...action.payload.athlete};
+    case ATHLETE_FAILURE:
+      return {};
   }
   return state;
 };
