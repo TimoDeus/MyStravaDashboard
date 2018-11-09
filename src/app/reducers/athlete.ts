@@ -4,7 +4,7 @@ import {ATHLETE_FAILURE, ATHLETE_SUCCESS, AthleteAction} from "app/actions/athle
 export const athlete = (state: AthleteState = {}, action: AthleteAction) => {
   switch (action.type) {
     case ATHLETE_SUCCESS:
-      return {...state, ...action.payload.athlete};
+      return {...state, ...action.payload};
     case ATHLETE_FAILURE:
       return {};
   }

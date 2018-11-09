@@ -9,7 +9,7 @@ import {History} from "history";
 import * as qs from "query-string";
 
 interface Props {
-  doStoreToken: (token: string) => void;
+  processAuthorization: (token: string) => void;
   history: History
 }
 
@@ -20,7 +20,7 @@ class OauthCallback extends Component<ComponentProps> {
   componentDidMount() {
     const token = qs.parse(this.props.location.search).code;
     if (token) {
-      this.props.doStoreToken(token.toString());
+      this.props.processAuthorization(token.toString());
     }
   }
 
@@ -30,9 +30,8 @@ class OauthCallback extends Component<ComponentProps> {
 }
 
 const mapDispatchToProps = (dispatch: DispatchThunk<AuthorizeAction>, ownProps: Props) => ({
-  doStoreToken: (token: string) => {
-    dispatch(authorize(token));
-    ownProps.history.push('/');
+  processAuthorization: (token: string) => {
+    dispatch(authorize(token)).then(() => ownProps.history.push('/'));
   }
 });
 

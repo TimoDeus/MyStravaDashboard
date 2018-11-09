@@ -1,11 +1,13 @@
 import {Response} from 'express';
+import stravaClient from "../controllers/stravaApi";
 
 class RequestHelper {
 
   executeRequest = (res: Response, func: (...args: any[]) => void, params: any[] = []): void => {
     try {
-      func.apply([...params, this.handleResponse(res)]);
+      func.apply(stravaClient, [...params, this.handleResponse(res)]);
     } catch (err) {
+      console.error(err);
       res.status(401).end();
     }
   };
