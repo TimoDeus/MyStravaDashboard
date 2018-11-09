@@ -3,15 +3,10 @@ import {AxiosPromise} from "axios";
 
 class RequestHelper {
 
-  executeRequest = (res: Response, promise: AxiosPromise<any>): void => {
+  handleResponsePromise = (res: Response, promise: AxiosPromise<any>) =>
     promise.then(
-      (body: any) => {
-        res.status(200).json(body.data);
-      },
-      ({response}: any) => {
-        res.status(response.status).json(response.data);
-      });
-  };
+      ({status, data}) => res.status(status).json(data),
+      ({response: {status, data}}) => res.status(data.response.status).json(data.response.data));
 }
 
-export default new RequestHelper().executeRequest;
+export default new RequestHelper().handleResponsePromise;

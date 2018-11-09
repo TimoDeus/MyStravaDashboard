@@ -7,11 +7,12 @@ import axios from 'axios';
 import {getAthlete} from "app/config/restUrls";
 import {RootState} from "app/reducers";
 import errorHandler from "app/actions/errorHandler";
+import {prepareDefaultParams} from "../actionUtils";
 
 const fetchAthlete: ActionCreator<AsyncThunkAction<AthleteAction>> = () => (dispatch: DispatchThunk<AthleteAction>, getState: GetState) => {
   dispatch({type: constants.ATHLETE_REQUEST});
-  const token = getState().authorization.accessToken;
-  return axios.post<AuthorizationPayload>(getAthlete, {token}).then(
+  const params = prepareDefaultParams(getState);
+  return axios.post<AuthorizationPayload>(getAthlete, params).then(
     ({data}) => dispatch({type: constants.ATHLETE_SUCCESS, payload: data}),
     errorHandler(dispatch, ATHLETE_FAILURE)
   );
