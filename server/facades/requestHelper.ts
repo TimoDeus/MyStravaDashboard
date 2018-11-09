@@ -1,24 +1,16 @@
 import {Response} from 'express';
-import stravaClient from "../controllers/stravaApi";
+import {AxiosPromise} from "axios";
 
 class RequestHelper {
 
-  executeRequest = (res: Response, func: (...args: any[]) => void, params: any[] = []): void => {
-    try {
-      func.apply(stravaClient, [...params, this.handleResponse(res)]);
-    } catch (err) {
-      console.error(err);
-      res.status(401).end();
-    }
-  };
-
-  handleResponse = (res: Response) => (error: any, body: any): void => {
-    if (error) {
-      console.error(error.message, body.message, body.errors, error.stack);
-      res.status(body.statusCode).json({message: body.message, errors: body.errors});
-    } else {
-      res.status(body.statusCode).json(body);
-    }
+  executeRequest = (res: Response, promise: AxiosPromise<any>): void => {
+    promise.then(
+      (body: any) => {
+        res.status(200).json(body.data);
+      },
+      ({response}: any) => {
+        res.status(response.status).json(response.data);
+      });
   };
 }
 

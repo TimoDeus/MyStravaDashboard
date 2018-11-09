@@ -8,9 +8,10 @@ import {getAthlete} from "app/config/restUrls";
 import {RootState} from "app/reducers";
 import errorHandler from "app/actions/errorHandler";
 
-const fetchAthlete: ActionCreator<AsyncThunkAction<AthleteAction>> = () => (dispatch: DispatchThunk<AthleteAction>) => {
+const fetchAthlete: ActionCreator<AsyncThunkAction<AthleteAction>> = () => (dispatch: DispatchThunk<AthleteAction>, getState: GetState) => {
   dispatch({type: constants.ATHLETE_REQUEST});
-  return axios.post<AuthorizationPayload>(getAthlete, {}).then(
+  const token = getState().authorization.accessToken;
+  return axios.post<AuthorizationPayload>(getAthlete, {token}).then(
     ({data}) => dispatch({type: constants.ATHLETE_SUCCESS, payload: data}),
     errorHandler(dispatch, ATHLETE_FAILURE)
   );
